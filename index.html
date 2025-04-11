@@ -6,417 +6,12 @@
   <title>Project C - Director's Cut</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      AOS.init({ duration: 800, once: true });
-    });
-  </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #0a0a0a;
-      color: #fff;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 999;
-    }
-
-    nav .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      color: #f1c40f;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #f1c40f;
-    }
-
-    .menu-toggle {
-      display: none;
-    }
-
-    header.hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding-top: 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('banner.jpg') no-repeat center center/cover;
-      opacity: 0;
-      animation: fadeInBg 2s ease forwards;
-      z-index: -1;
-    }
-
-    .hero-content {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 2rem;
-      border-radius: 10px;
-      animation: fadeInUp 1.5s ease-out;
-    }
-
-    .hero-content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-content p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-
-    @keyframes fadeInBg {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    section {
-      padding: 4rem 2rem;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      color: #f1c40f;
-      margin-bottom: 2rem;
-    }
-
-    .about p, .story p {
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    .character-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .character-card {
-      background-color: #1b1b1b;
-      padding: 1.5rem;
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      width: 250px;
-      transition: transform 0.3s ease;
-    }
-
-    .character-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .character-card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-
-    .character-card.upcoming {
-      background-color: #000;
-      color: #444;
-      font-style: italic;
-    }
-        /* Style for upcoming (locked) characters */
-    .character-card.upcoming img {
-      filter: grayscale(100%) blur(1.5px) brightness(60%);
-      transition: filter 0.3s ease;
-    }
-
-    .character-card.upcoming:hover img {
-      filter: grayscale(50%) blur(1px) brightness(80%);
-    }
-
-    .character-card.upcoming h3, .character-card.upcoming p {
-      color: #aaa;
-      font-style: italic;
-    }
-
-
-    .character-info {
-      display: none;
-    }
-
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 1rem;
-    }
-
-
-    .popup {
-      display: flex;
-      flex-direction: row;
-      background-color: #111;
-      border-radius: 10px;
-      max-width: 700px;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      animation: fadeInUp 0.5s ease-out;
-    }
-
-    .popup-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: #f1c40f;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .popup .popup-left {
-      width: 35%;
-      background: url('character-background.jpg') no-repeat center center/cover;
-      min-height: 300px;
-    }
-
-    .popup .popup-middle {
-      width: 20%;
-      background: url('transparent.png') no-repeat center center;
-      background-size: contain;
-      min-height: 300px;
-    }
-
-    .popup .popup-right {
-      width: 45%;
-      padding: 1.5rem;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .popup .popup-right h3 {
-      color: #f1c40f;
-      margin-bottom: 1rem;
-    }
-
-    .screenshots {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .screenshots img {
-      width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-
-    .screenshots img:hover {
-      transform: scale(1.05);
-    }
-
-    .downloads {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .download-button {
-      display: inline-block;
-      background-color: #f1c40f;
-      color: #000;
-      font-weight: bold;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .download-button:hover {
-      background-color: #d4ac0d;
-    }
-
-    .site-footer {
-  background-color: #000;
-  color: #fff;
-  text-align: center;
-  padding: 40px 20px;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 14px;
-  border-top: 1px solid #444;
-}
-
-.footer-links a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 8px;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.footer-logos {
-  margin: 20px 0;
-}
-
-.footer-logo {
-  height: 60px;
-  margin: 0 15px;
-  vertical-align: middle;
-}
-
-.footer-socials {
-  margin: 20px 0;
-}
-
-.footer-socials a {
-  color: #aaa;
-  font-size: 24px;
-  margin: 0 12px;
-  transition: color 0.3s ease;
-}
-
-.footer-socials a:hover {
-  color: #fff;
-}
-
-.footer-note {
-  font-size: 12px;
-  margin-top: 20px;
-  color: #aaa;
-  line-height: 1.6;
-}
-
-
-
-
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-        flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.9);
-        position: absolute;
-        top: 60px;
-        right: 2rem;
-        padding: 1rem;
-        border-radius: 8px;
-      }
-      nav ul.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
-      .popup {
-        flex-direction: column;
-      }
-      .popup-left, .popup-middle, .popup-right {
-        width: 100%;
-        min-height: 150px;
-      }
-    }
-  </style>
-  <script defer>
-    function toggleMenu() {
-      document.getElementById('nav-links').classList.toggle('active');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.character-card');
-      const popupOverlay = document.createElement('div');
-      popupOverlay.className = 'popup-overlay';
-      document.body.appendChild(popupOverlay);
-
-      cards.forEach(card => {
-        card.addEventListener('click', () => {
-          const info = card.querySelector('.character-info');
-          if (!info) return;
-
-          popupOverlay.innerHTML = `
-            <div class="popup">
-              <button class="popup-close">&times;</button>
-              <div class="popup-left"></div>
-              <div class="popup-middle"></div>
-              <div class="popup-right">
-                <h3>${card.querySelector('h3')?.innerText}</h3>
-                <p>${info.innerHTML}</p>
-              </div>
-            </div>
-          `;
-          popupOverlay.style.display = 'flex';
-
-          popupOverlay.querySelector('.popup-close').onclick = () => {
-            popupOverlay.style.display = 'none';
-          };
-        });
-      });
-
-      popupOverlay.addEventListener('click', (e) => {
-        if (e.target === popupOverlay) {
-          popupOverlay.style.display = 'none';
-        }
-      });
-    });
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
+  <script src="scripts.js" defer></script>
 </head>
 <body>
   <nav>
@@ -425,9 +20,11 @@
     <ul id="nav-links">
       <li><a href="#top">Top</a></li>
       <li><a href="#media">Media</a></li>
+      <li><a href="#intro-highlight">Intro</a></li>
       <li><a href="#story">Story</a></li>
       <li><a href="#characters">Characters</a></li>
       <li><a href="#screenshots">Screenshots</a></li>
+      <li><a href="#battle">Battle</a></li>
     </ul>
   </nav>
 
@@ -437,6 +34,30 @@
       <p>Experience the chaos of the Roblox underground!</p>
     </div>
   </header>
+  
+  <section id="intro-highlight" class="intro-highlight">
+    <div class="intro-content">
+      <div class="intro-text" data-aos="fade-right">
+        <h2 data-aos="fade-up">To those who don’t yet know the “Dragon”,<br>and to those who love the “Dragon”</h2>
+        <p data-aos="fade-up" data-aos-delay="100">
+          “Yakuza 0: The Place of Oath” returns in a <strong>Director’s Cut</strong> version, now launching on <strong>Nintendo Switch™ 2</strong>!<br>
+          Set in 1988, during the height of Japan’s economic boom, the story takes place in the massive entertainment districts of Tokyo and Osaka. It follows two young protagonists — <strong>Kazuma Kiryu</strong> and <strong>Goro Majima</strong> — as they begin one of the most intense stories in series history...
+        </p>
+  
+        <p data-aos="fade-up" data-aos-delay="200">
+          This version also includes newly added scenes involving key characters that were previously unrecorded.<br>
+          And for the first time in the series, an <strong>online multiplayer mode</strong> called “Katsuage Online Battle” is here!
+        </p>
+  
+        <div class="intro-buttons" data-aos="fade-up" data-aos-delay="300">
+          <a href="#top" class="intro-btn">DIRECTOR’S CUT</a>
+          <a href="#characters" class="intro-btn alt">Main Protaganist & Characters</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
 
   <section id="media">
     <h2 class="section-title" data-aos="fade-up">Watch the Trailer</h2>
@@ -453,94 +74,154 @@
   <section id="characters" class="characters">
     <h2 class="section-title" data-aos="fade-up">Characters</h2>
     <div class="character-grid">
-      <!-- Playable Characters -->
-      <div class="character-card" data-aos="fade-up">
-        <img src="character1.jpg" alt="Blocky Kazuma">
-        <h3>Codename: Bright</h3>
-        <p>A fearless warrior in the pixel streets of Blox City.</p>
-        <div class="character-info">
-          <strong>Strength:</strong> Street fighting<br>
-          <strong>Backstory:</strong> Raised in a digital orphanage, Blocky rose through the ranks of the underworld.
-        </div>
-      </div>
   
-      <div class="character-card" data-aos="fade-up" data-aos-delay="100">
-        <img src="character2.jpg" alt="Cube Majima">
-        <h3>Codename: Color</h3>
-        <p>The madman with the sword and the dance.</p>
-        <div class="character-info">
-          <strong>Strength:</strong> Blade mastery and unpredictability<br>
-          <strong>Backstory:</strong> Once a top enforcer, he vanished—only to return more insane than ever.
-        </div>
-      </div>
-  
-      <div class="character-card" data-aos="fade-up" data-aos-delay="200">
-        <img src="character3.jpg" alt="Pixel Reina">
-        <h3>Codename: Naomi</h3>
-        <p>The mind behind the underground networks.</p>
-        <div class="character-info">
-          <strong>Strength:</strong> Hacking & persuasion<br>
-          <strong>Backstory:</strong> Exiled coder turned rogue queen of cyberspace.
-        </div>
-      </div>
-  
-      <!-- Upcoming Characters (clickable, hidden bios) -->
-      <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="300">
-        <img src="comingsoon1.jpg" alt="Coming Soon">
-        <h3>???</h3>
-        <p>Coming Soon...</p>
-        <div class="character-info">
-          <strong>Strength:</strong> Unknown<br>
-          <strong>Backstory:</strong> ????
-        </div>
-      </div>
-  
-      <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="400">
-        <img src="comingsoon2.jpg" alt="Coming Soon">
-        <h3>???</h3>
-        <p>Coming Soon...</p>
-        <div class="character-info">
-          <strong>Strength:</strong> Classified<br>
-          <strong>Backstory:</strong> Data currently encrypted.
-        </div>
-      </div>
-  
-      <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="500">
-        <img src="comingsoon3.jpg" alt="Coming Soon">
-        <h3>???</h3>
-        <p>Coming Soon...</p>
-        <div class="character-info">
-          <strong>Strength:</strong> ???<br>
-          <strong>Backstory:</strong> Awaiting decryption.
-        </div>
-      </div>
-  
-      <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="600">
-        <img src="comingsoon4.jpg" alt="Coming Soon">
-        <h3>???</h3>
-        <p>Coming Soon...</p>
-        <div class="character-info">
-          <strong>Strength:</strong> ???<br>
-          <strong>Backstory:</strong> Hidden for now...
-        </div>
-      </div>
-    </div>
-  </section>
-  
+     <!-- Character Card Section -->
+<div class="character-scroll-wrapper" data-aos="fade-up">
+  <div class="character-grid horizontal-scroll">
 
+    <!-- Playable Characters -->
+    <div class="character-card" data-aos="fade-up" onclick="openPopup('bright-popup')">
+      <img src="bright.png" alt="Blocky Kazuma">
+      <div class="char-name">Codename: Bright</div>
+    </div>
+
+    <div class="character-card" data-aos="fade-up" onclick="openPopup('color-popup')">
+      <img src="color.png" alt="Blocky Color">
+      <div class="char-name">Codename: Color</div>
+    </div>
+
+    <div class="character-card" data-aos="fade-up" onclick="openPopup('naomi-popup')">
+      <img src="naomi.png" alt="Blocky Naomi">
+      <div class="char-name">Codename: Naomi</div>
+    </div>
+
+    <!-- Upcoming Characters -->
+    <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="300" onclick="openPopup('soon1-popup')">
+      <img src="comingsoon1.jpg" alt="Coming Soon">
+      <div class="char-name">???</div>
+    </div>
+
+    <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="400" onclick="openPopup('soon2-popup')">
+      <img src="comingsoon2.jpg" alt="Coming Soon">
+      <div class="char-name">???</div>
+    </div>
+
+    <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="500" onclick="openPopup('soon3-popup')">
+      <img src="comingsoon3.jpg" alt="Coming Soon">
+      <div class="char-name">???</div>
+    </div>
+
+    <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="600" onclick="openPopup('soon4-popup')">
+      <img src="comingsoon4.jpg" alt="Coming Soon">
+      <div class="char-name">???</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Popups -->
+<div id="bright-popup" class="character-popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>Codename: Bright</h2>
+    <p><strong>Strength:</strong> Street fighting</p>
+    <p><strong>Backstory:</strong> Raised in a digital orphanage, Blocky rose through the ranks of the underworld.</p>
+  </div>
+</div>
+
+<div id="color-popup" class="character-popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>Codename: Color</h2>
+    <p><strong>Strength:</strong> Blade mastery and unpredictability</p>
+    <p><strong>Backstory:</strong> Once a top enforcer, he vanished—only to return more insane than ever.</p>
+  </div>
+</div>
+
+<div id="naomi-popup" class="character-popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>Codename: Naomi</h2>
+    <p><strong>Strength:</strong> Hacking & persuasion</p>
+    <p><strong>Backstory:</strong> Exiled coder turned rogue queen of cyberspace.</p>
+  </div>
+</div>
+
+<!-- Upcoming Character Popups -->
+<div id="soon1-popup" class="character-popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>???</h2>
+    <p><strong>Strength:</strong> Unknown</p>
+    <p><strong>Backstory:</strong> ????</p>
+  </div>
+</div>
+
+<div id="soon2-popup" class="character-popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>???</h2>
+    <p><strong>Strength:</strong> Unknown</p>
+    <p><strong>Backstory:</strong> ????</p>
+  </div>
+</div>
+
+<div id="soon3-popup" class="character-popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>???</h2>
+    <p><strong>Strength:</strong> Unknown</p>
+    <p><strong>Backstory:</strong> ????</p>
+  </div>
+</div>
+
+<div id="soon4-popup" class="character-popup">
+  <div class="popup-content">
+    <span class="close-btn" onclick="closePopup()">&times;</span>
+    <h2>???</h2>
+    <p><strong>Strength:</strong> Unknown</p>
+    <p><strong>Backstory:</strong> ????</p>
+  </div>
+</div>
+
+
+  </section>
   <section id="screenshots">
     <h2 class="section-title" data-aos="fade-up">Screenshots</h2>
     <div class="screenshots" data-aos="fade-up">
-      <img src="screenshot1.jpg" alt="Screenshot 1">
-      <img src="screenshot2.jpg" alt="Screenshot 2">
-      <img src="screenshot3.jpg" alt="Screenshot 3">
-      <img src="screenshot4.jpg" alt="Screenshot 4">
-      <img src="screenshot5.jpg" alt="Screenshot 5">
-      <img src="screenshot6.jpg" alt="Screenshot 6">
-      <img src="screenshot7.jpg" alt="Screenshot 7">
-      <img src="screenshot8.jpg" alt="Screenshot 8">
-      <img src="screenshot9.jpg" alt="Screenshot 9">
+      <img src="screenshot1.jpg" data-full="screenshot1.jpg" alt="Screenshot 1">
+      <img src="screenshot2.jpg" data-full="screenshot2.jpg" alt="Screenshot 2">
+      <img src="screenshot3.jpg" data-full="screenshot3.jpg" alt="Screenshot 3">
+      <img src="screenshot4.jpg" data-full="screenshot4.jpg" alt="Screenshot 4">
+      <img src="screenshot5.jpg" data-full="screenshot5.jpg" alt="Screenshot 5">
+      <img src="screenshot6.jpg" data-full="screenshot6.jpg" alt="Screenshot 6">
     </div>
+    <div class="lightbox" id="lightbox">
+      <span class="close-lightbox">&times;</span>
+      <img id="lightbox-img" src="" alt="Expanded Screenshot">
+      <span class="nav-arrow prev">&lt;</span>
+      <span class="nav-arrow next">&gt;</span>
+    </div>
+    
+    <section id="battle" class="battle-section">
+      <h2 class="section-title" data-aos="fade-up">BATTLE</h2>
+      <p class="battle-subtitle" data-aos="fade-up">
+        Kiryu and Majima. Each with 3 unique battle styles for intense, satisfying brawling action.
+      </p>
+      
+      <div class="battle-images" data-aos="fade-up">
+        <div class="battle-image left">
+          <img src="left1.png" alt="Kiryu">
+          <div class="battle-name">桐生</div>
+        </div>
+        <div class="battle-image right">
+          <img src="right1.png" alt="Majima">
+          <div class="battle-name">真島</div>
+        </div>
+      </div>
+    </section>
+    
+
     <div class="downloads" data-aos="fade-up">
       <a href="https://www.roblox.com/" target="_blank" class="download-button">Click here to play the game</a>
     </div>

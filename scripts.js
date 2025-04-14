@@ -27,7 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-
+  // Story Section
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+  
   // Character popups (Coming Soon & Playable)
   const cards = document.querySelectorAll('.character-card');
   const popupOverlay = document.createElement('div');
@@ -70,48 +75,48 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Screenshots lightbox logic
-  const screenshots = document.querySelectorAll(".screenshots img");
+  const screenshots = document.querySelectorAll(".story-gallery img, .screenshots img");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const closeBtn = document.querySelector(".close-lightbox");
   const nextBtn = document.querySelector(".next");
   const prevBtn = document.querySelector(".prev");
+  
   let currentIndex = 0;
-
+  
   function openLightbox(index) {
     currentIndex = index;
     lightboxImg.src = screenshots[currentIndex].getAttribute("data-full") || screenshots[currentIndex].src;
     lightbox.classList.add("active");
     document.body.style.overflow = "hidden";
   }
-
+  
   function closeLightbox() {
     lightbox.classList.remove("active");
     document.body.style.overflow = "";
   }
-
+  
   function showNext() {
     currentIndex = (currentIndex + 1) % screenshots.length;
     openLightbox(currentIndex);
   }
-
+  
   function showPrev() {
     currentIndex = (currentIndex - 1 + screenshots.length) % screenshots.length;
     openLightbox(currentIndex);
   }
-
+  
   screenshots.forEach((img, index) => {
     img.addEventListener("click", () => openLightbox(index));
   });
-
+  
   closeBtn.addEventListener("click", closeLightbox);
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) closeLightbox();
   });
-
   nextBtn.addEventListener("click", showNext);
   prevBtn.addEventListener("click", showPrev);
-
+  
   document.addEventListener("keydown", (e) => {
     if (!lightbox.classList.contains("active")) return;
     if (e.key === "ArrowRight") showNext();

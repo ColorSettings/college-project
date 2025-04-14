@@ -24,7 +24,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  z-index: 999;
+  z-index: 1000;
 }
 
 nav .logo {
@@ -72,7 +72,7 @@ header.hero {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('banner.jpg') no-repeat center center/cover;
+  background: url('main.jpg') no-repeat center center/cover;
   opacity: 0;
   animation: fadeInBg 2s ease forwards;
   z-index: -1;
@@ -109,12 +109,84 @@ section {
   padding: 4rem 2rem;
 }
 
+
 .section-title {
   text-align: center;
-  font-size: 2rem;
+  font-size: 4rem;
   color: #f1c40f;
   margin-bottom: 2rem;
 }
+
+
+.story-section {
+  background: url('story.jpg') no-repeat center center / cover;
+  color: white;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.story-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 35%, rgba(0, 0, 0, 0.4) 65%, transparent 100%);
+  z-index: 1;
+}
+
+.story-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.story-content-right {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story-content-right h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.story-content-right p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.story-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.story-gallery img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.story-gallery img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
 
 .about p, .story p {
   max-width: 800px;
@@ -501,6 +573,8 @@ section {
   font-family: 'Noto Serif JP', serif;
 }
 
+/* Battle Cards Section */
+
 
 .downloads {
   text-align: center;
@@ -576,7 +650,7 @@ line-height: 1.6;
 
 .intro-highlight {
   position: relative;
-  background: url('kamurocho-bg.jpg') no-repeat center center / cover;
+  background: url('intro.jpg') no-repeat center center / cover;
   background-attachment: fixed;
   background-size: cover;
   padding: 6rem 2rem;
@@ -585,37 +659,43 @@ line-height: 1.6;
 
 
 .intro-highlight::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.3));
-  z-index: 1;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
 }
 
 .intro-content {
   position: relative;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.5); /* Optional: makes text pop */
+  height: 50vh;
   padding: 2rem;
-  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centers everything vertically */
+  align-items: flex-start; /* keeps content aligned left */
+  text-align: left;
+  color: #fff;
+  background: none;
+  margin-top: 20vh; /* ⬅ optional, tweak as needed */
+
 }
 
 
 .intro-text h2 {
-  font-size: 2.4rem;
-  margin-bottom: 20px;
+  font-size: 2.8rem;
+  line-height: 1.3;
+  margin-bottom: 1rem;
   font-weight: 700;
-  line-height: 1.4;
 }
 
 .intro-text p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 25px;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin-bottom: 2rem;
 }
 
+
 .intro-buttons {
+  margin-top: 1.5rem;
   display: flex;
   gap: 15px;
 }
@@ -664,7 +744,8 @@ line-height: 1.6;
 
 
 
-@media (max-width: 768px) {
+
+@media (max-width: 960px) {
   nav ul {
     display: none;
     flex-direction: column;
@@ -698,6 +779,17 @@ line-height: 1.6;
     text-align: center;
   }
 
+
+  .intro-content {
+    height: auto;
+    margin-top: 0;
+  }
+
+  .intro-highlight {
+    background-attachment: scroll; /* fallback for mobile devices */
+}
+
+}
   .popup {
     flex-direction: column;
   }
@@ -708,12 +800,3 @@ line-height: 1.6;
     width: 100%;
     min-height: 200px;
   }
-
-  .battle-image {
-    max-width: 100%;
-  }
-}
-
-  .intro-highlight {
-    background-attachment: scroll; /* fallback for mobile devices */
-}

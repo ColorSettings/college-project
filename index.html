@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
   <link rel="stylesheet" href="styles.css" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
@@ -25,6 +27,7 @@
       <li><a href="#characters">Characters</a></li>
       <li><a href="#screenshots">Screenshots</a></li>
       <li><a href="#battle">Battle</a></li>
+      <li><a href="#adventure" class="active">Adventure</a></li>
     </ul>
   </nav>
 
@@ -77,11 +80,11 @@
         <p>As the conflict over the "Empty Lot" intensifies, multiple factions collide. Eventually, the battle expands into a massive conflict involving even powerful organizations from the west. Three men find themselves swept up in the tide of fate...</p>
         <p>As one era ends, a new one is about to begin — and their destinies are about to change forever.</p>
         <div class="story-gallery" data-aos="fade-up">
-          <img src="scene1.jpg" alt="Scene 1">
-          <img src="scene2.jpg" alt="Scene 2">
-          <img src="scene3.jpg" alt="Scene 3">
-          <img src="scene4.jpg" alt="Scene 4">
-          <img src="scene5.jpg" alt="Scene 5">
+          <img src="screenshot/s1.jpg" alt="Scene 1">
+          <img src="screenshot/s2.jpg" alt="Scene 2">
+          <img src="screenshot/s3.jpg" alt="Scene 3">
+          <img src="screenshot/s4.jpg" alt="Scene 4">
+          <img src="screenshot/s5.jpg" alt="Scene 5">
           <img src="scene6.jpg" alt="Scene 6">
         </div>
       </div>
@@ -208,11 +211,11 @@
   <section id="screenshots">
     <h2 class="section-title" data-aos="fade-up">Screenshots</h2>
     <div class="screenshots" data-aos="fade-up">
-      <img src="screenshot1.jpg" data-full="screenshot1.jpg" alt="Screenshot 1">
-      <img src="screenshot2.jpg" data-full="screenshot2.jpg" alt="Screenshot 2">
-      <img src="screenshot3.jpg" data-full="screenshot3.jpg" alt="Screenshot 3">
-      <img src="screenshot4.jpg" data-full="screenshot4.jpg" alt="Screenshot 4">
-      <img src="screenshot5.jpg" data-full="screenshot5.jpg" alt="Screenshot 5">
+      <img src="screenshot/s1.jpg" data-full="screenshot/s1.jpg" alt="Screenshot 1">
+      <img src="screenshot/s2.jpg" data-full="screenshot/s2.jpg" alt="Screenshot 2">
+      <img src="screenshot/s3.jpg" data-full="screenshot/s3.jpg" alt="Screenshot 3">
+      <img src="screenshot/s4.jpg" data-full="screenshot/s4.jpg" alt="Screenshot 4">
+      <img src="screenshot/s5.jpg" data-full="screenshot/s5.jpg" alt="Screenshot 5">
       <img src="screenshot6.jpg" data-full="screenshot6.jpg" alt="Screenshot 6">
     </div>
     <div class="lightbox" id="lightbox">
@@ -222,10 +225,10 @@
       <span class="nav-arrow next">&gt;</span>
     </div>
     
-    <section id="battle" class="battle-section">
+    <section id="battle" class="battle-section" data-aos="fade-up">
       <h2 class="section-title" data-aos="fade-up">BATTLE</h2>
       <p class="battle-subtitle" data-aos="fade-up">
-        Bright & Color. Each with 3 unique battle styles for intense, satisfying brawling action.
+        Bright, Color and Naomi. Each with different battle styles for intense, satisfying brawling action.
       </p>
       
       <div class="battle-images" data-aos="fade-up">
@@ -242,6 +245,63 @@
           <div class="battle-name">Naomi</div>
         </div>
       </div>
+      
+      <section class="carousel-section" data-aos="fade-up">
+        <h2 data-aos="fade-up">Fighting Style Showcase</h2>
+      
+        <div class="glide">
+          <div class="glide__track" data-glide-el="track" data-aos="fade-up">
+            <ul class="glide__slides">
+              <li class="glide__slide"><img src="main.jpg" alt="1"></li>
+              <li class="glide__slide"><img src="intro.jpg" alt="2"></li>
+              <li class="glide__slide"><img src="story.jpg" alt="3"></li>
+              <li class="glide__slide"><img src="main.jpg" alt="4"></li>
+            </ul>
+          </div>
+      
+          <!-- Proper text block, moved outside of track -->
+          <div class="carousel-description" data-aos="fade-up">
+            <p>
+              <strong>"Chinpira"</strong> embodies the young Kazuma Kiryu's overflowing fighting style,
+              <strong>"Rush"</strong> is a fast continuous attack mainly using punches and graceful footwork,
+              and <strong>"Demolition"</strong> grabs objects and enemies in the vicinity and swings them around.
+              Switch battle styles according to the situation and smash your enemies!
+            </p>
+          </div>
+      
+          <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<">&#10094;</button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">&#10095;</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="adventure" class="adventure-section" data-aos="fade-up">
+        <div class="parallax-bg"></div>
+      
+        <div class="adventure-content">
+          <h2 class="section-title" data-aos="fade-up">ADVENTURE</h2>
+          <p class="adventure-subtitle" data-aos="fade-up">
+            Use money, connections, and brains — become the King of the sleepless cities!
+          </p>
+      
+          <div class="city-images">
+            <div class="city-box" data-aos="fade-up">
+              <img src="adventure1.jpg" alt="Tokyo - Kamurocho">
+              <div class="city-overlay">
+                <span>Tokyo – Kamurocho</span>
+              </div>
+            </div>
+            <div class="city-box" data-aos="fade-up">
+              <img src="adventure2.jpg" alt="Osaka - Sotenbori">
+              <div class="city-overlay">
+                <span>Osaka – Sotenbori</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       
       
 

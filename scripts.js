@@ -124,3 +124,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === "Escape") closeLightbox();
   });
 });
+
+
+//Battle Carousel
+document.addEventListener('DOMContentLoaded', () => {
+  new Glide('.glide', {
+    type: 'carousel',
+    perView: 1,
+    focusAt: 'center',
+    gap: 0,
+    animationDuration: 600,
+    autoplay: 3000, // Set to 3000 for auto-slide
+    hoverpause: true
+  }).mount();
+});

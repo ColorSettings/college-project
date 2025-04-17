@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     once: true
   });
   
+  
   // Character popups (Coming Soon & Playable)
   const cards = document.querySelectorAll('.character-card');
   const popupOverlay = document.createElement('div');

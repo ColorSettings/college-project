@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Screenshots lightbox logic
-  const screenshots = document.querySelectorAll(".story-gallery img, .screenshots img",);
+  const screenshots = document.querySelectorAll(".story-gallery img, .screenshots img, .battle-images img, .glide__slide img, .city-images img");
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const closeBtn = document.querySelector(".close-lightbox");

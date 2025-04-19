@@ -21,8 +21,8 @@
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <ul id="nav-links">
       <li><a href="#top">Top</a></li>
-      <li><a href="#media">Media</a></li>
       <li><a href="#intro-highlight">Intro</a></li>
+      <li><a href="#trailer">Trailer</a></li>
       <li><a href="#story">Story</a></li>
       <li><a href="#characters">Characters</a></li>
       <li><a href="#screenshots">Screenshots</a></li>
@@ -63,12 +63,25 @@
   
   
 
-  <section id="media">
+  <section id="trailer">
     <h2 class="section-title" data-aos="fade-up">Watch the Trailer</h2>
-    <div class="video-container" data-aos="fade-up">
-      <iframe width="100%" height="800" src="https://www.youtube.com/embed/-WKq57ibDXc" frameborder="0" allowfullscreen  allow="autoplay; fullscreen"></iframe>
+    <div class="video-container" data-aos="fade-up" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe
+        src="https://www.youtube.com/watch?v=DrbnwLNHqOc?autoplay=0&controls=0&showinfo=0&rel=0&modestbranding=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+      </iframe>
+      <button id="sound-toggle" aria-label="Toggle Sound">
+        🔊
+      </button>
     </div>
   </section>
+  
+  
+  
+  
 
   <h2 id="story" class="section-title" data-aos="fade-up">Story</h2>
   <section class="story-section" data-aos="fade-up">
@@ -80,12 +93,12 @@
         <p>As the conflict over the "Empty Lot" intensifies, multiple factions collide. Eventually, the battle expands into a massive conflict involving even powerful organizations from the west. Three men find themselves swept up in the tide of fate...</p>
         <p>As one era ends, a new one is about to begin — and their destinies are about to change forever.</p>
         <div class="story-gallery" data-aos="fade-up">
-          <img src="screenshot/s1.jpg" alt="Scene 1">
-          <img src="screenshot/s2.jpg" alt="Scene 2">
-          <img src="screenshot/s3.jpg" alt="Scene 3">
-          <img src="screenshot/s4.jpg" alt="Scene 4">
-          <img src="screenshot/s5.jpg" alt="Scene 5">
-          <img src="screenshot/s6.jpg" alt="Scene 6">
+          <img src="screenshot/s9.jpg" alt="Scene 1">
+          <img src="screenshot/s10.jpg" alt="Scene 2">
+          <img src="adventure1.jpg" alt="Scene 3">
+          <img src="screenshot/s14.jpg" alt="Scene 4">
+          <img src="screenshot/s12.jpg" alt="Scene 5">
+          <img src="adventure2.jpg" alt="Scene 6">
         </div>
       </div>
     </div>
@@ -103,33 +116,33 @@
 
     <!-- Playable Characters -->
     <div class="character-card" data-aos="fade-up" onclick="openPopup('bright-popup')">
-      <img src="placeholder.jpg" alt="Blocky Kazuma">
+      <img src="Bright-banner.jpg" alt="Blocky Kazuma">
       <div class="char-name">Codename: Bright</div>
     </div>
 
     <div class="character-card" data-aos="fade-up" onclick="openPopup('color-popup')">
-      <img src="placeholder.jpg" alt="Blocky Color">
+      <img src="Color-banner.jpg" alt="Blocky Color">
       <div class="char-name">Codename: Color</div>
-    </div>
-
-    <div class="character-card" data-aos="fade-up" onclick="openPopup('naomi-popup')">
-      <img src="placeholder.jpg" alt="Blocky Naomi">
-      <div class="char-name">Codename: Naomi</div>
     </div>
 
     <!-- Upcoming Characters -->
     <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="300" onclick="openPopup('soon1-popup')">
-      <img src="placeholder2.jpg" alt="Coming Soon">
+      <img src="placeholder.jpg" alt="Coming Soon">
+      <div class="char-name">???</div>
+    </div>
+
+    <div class="character-card" data-aos="fade-up" onclick="openPopup('naomi-popup')">
+      <img src="placeholder.jpg" alt="Coming Soon">
       <div class="char-name">???</div>
     </div>
 
     <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="400" onclick="openPopup('soon2-popup')">
-      <img src="placeholder2.jpg" alt="Coming Soon">
+      <img src="placeholder.jpg" alt="Coming Soon">
       <div class="char-name">???</div>
     </div>
 
     <div class="character-card upcoming" data-aos="fade-up" data-aos-delay="500" onclick="openPopup('soon3-popup')">
-      <img src="placeholder2.jpg" alt="Coming Soon">
+      <img src="placeholder.jpg" alt="Coming Soon">
       <div class="char-name">???</div>
     </div>
 
@@ -160,16 +173,17 @@
   </div>
 </div>
 
+
+<!-- Upcoming Character Popups -->
 <div id="naomi-popup" class="character-popup">
   <div class="popup-content">
     <span class="close-btn" onclick="closePopup()">&times;</span>
-    <h2>Codename: Naomi</h2>
-    <p><strong>Strength:</strong> Hacking & persuasion</p>
-    <p><strong>Backstory:</strong> Exiled coder turned rogue queen of cyberspace.</p>
+    <h2>???</h2>
+    <p><strong>Strength:</strong> Unknown</p>
+    <p><strong>Backstory:</strong> ???</p>
   </div>
 </div>
 
-<!-- Upcoming Character Popups -->
 <div id="soon1-popup" class="character-popup">
   <div class="popup-content">
     <span class="close-btn" onclick="closePopup()">&times;</span>
@@ -211,12 +225,15 @@
   <section id="screenshots">
     <h2 class="section-title" data-aos="fade-up">Screenshots</h2>
     <div class="screenshots" data-aos="fade-up">
-      <img src="screenshot/s1.jpg" data-full="screenshot/s1.jpg" alt="Screenshot 1">
-      <img src="screenshot/s2.jpg" data-full="screenshot/s2.jpg" alt="Screenshot 2">
-      <img src="screenshot/s3.jpg" data-full="screenshot/s3.jpg" alt="Screenshot 3">
-      <img src="screenshot/s4.jpg" data-full="screenshot/s4.jpg" alt="Screenshot 4">
-      <img src="screenshot/s5.jpg" data-full="screenshot/s5.jpg" alt="Screenshot 5">
-      <img src="screenshot/s6.jpg" data-full="screenshot/s6.jpg" alt="Screenshot 6">
+      <img src="screenshot/s20.jpg" data-full="screenshot/s20.jpg" alt="Screenshot 1">
+      <img src="screenshot/s9.jpg" data-full="screenshot/s9.jpg" alt="Screenshot 2">
+      <img src="screenshot/s15.jpg" data-full="screenshot/s15.jpg" alt="Screenshot 3">
+      <img src="screenshot/s19.jpg" data-full="screenshot/s19.jpg" alt="Screenshot 4">
+      <img src="screenshot/s13.jpg" data-full="screenshot/s13.jpg" alt="Screenshot 5">
+      <img src="screenshot/s27.jpg" data-full="screenshot/s27.jpg" alt="Screenshot 6">
+      <img src="screenshot/s17.jpg" data-full="screenshot/s17.jpg" alt="Screenshot 7">
+      <img src="screenshot/s25.jpg" data-full="screenshot/s25.jpg" alt="Screenshot 8">
+      <img src="screenshot/s21.jpg" data-full="screenshot/s21.jpg" alt="Screenshot 9">
     </div>
     <div class="lightbox" id="lightbox">
       <span class="close-lightbox">&times;</span>
@@ -228,21 +245,21 @@
     <section id="battle" class="battle-section" data-aos="fade-up">
       <h2 class="section-title" data-aos="fade-up">BATTLE</h2>
       <p class="battle-subtitle" data-aos="fade-up">
-        Bright, Color and Naomi. Each with different battle styles for intense, satisfying brawling action.
+        Bright & Color. Each with different battle styles for intense, satisfying brawling action.
       </p>
       
       <div class="battle-images" data-aos="fade-up">
         <div class="battle-image">
-          <img src="left1.png" alt="Kiryu">
+          <img src="bright revelation.jpg" alt="Codename: Bright">
           <div class="battle-name">Bright</div>
         </div>
         <div class="battle-image">
-          <img src="center.jpg" alt="Rush">
-          <div class="battle-name">Color</div>
+          <img src="screenshot/s7.jpg" alt="&">
+          <div class="battle-name">&</div>
         </div>
         <div class="battle-image">
-          <img src="right1.png" alt="Majima">
-          <div class="battle-name">Naomi</div>
+          <img src="color revelation.jpg" alt="Codename: Color">
+          <div class="battle-name">Color</div>
         </div>
       </div>
       
@@ -252,10 +269,14 @@
         <div class="glide">
           <div class="glide__track" data-glide-el="track" data-aos="fade-up">
             <ul class="glide__slides">
-              <li class="glide__slide"><img src="screenshot/s9.jpg" alt="1"></li>
-              <li class="glide__slide"><img src="screenshot/s10.jpg" alt="2"></li>
-              <li class="glide__slide"><img src="screenshot/s11.jpg" alt="3"></li>
-              <li class="glide__slide"><img src="screenshot/s12.jpg" alt="4"></li>
+              <li class="glide__slide"><img src="battle_bright1.jpg" alt="1"></li>
+              <li class="glide__slide"><img src="battle_bright2.jpg" alt="2"></li>
+              <li class="glide__slide"><img src="battle_bright3.jpg" alt="3"></li>
+              <li class="glide__slide"><img src="battle_bright4.jpg" alt="4"></li>
+              <li class="glide__slide"><img src="battle_color1.jpg" alt="5"></li>
+              <li class="glide__slide"><img src="battle_color2.jpg" alt="6"></li>
+              <li class="glide__slide"><img src="battle_color3.jpg" alt="7"></li>
+              <li class="glide__slide"><img src="battle_color4.jpg" alt="8"></li>
             </ul>
           </div>
       
@@ -310,42 +331,45 @@
         <!-- Top Row -->
         <div class="scroller">
           <div class="scroller-row reverse">
-            <img src="screenshot/s6.jpg" alt="">
-            <img src="screenshot/s6.jpg" alt="">
-            <img src="screenshot/s6.jpg" alt="">
-            <img src="screenshot/s6.jpg" alt="">
-            <img src="screenshot/s6.jpg" alt="">
-            <img src="screenshot/s6.jpg" alt="">
-            <img src="screenshot/s6.jpg" alt="">
-            <img src="screenshot/s6.jpg" alt="">
+            <img src="screenshot/s1.jpg" alt="">
+            <img src="screenshot/s3.jpg" alt="">
+            <img src="screenshot/s5.jpg" alt="">
+            <img src="screenshot/s7.jpg" alt="">
+            <img src="screenshot/s9.jpg" alt="">
+            <img src="screenshot/s11.jpg" alt="">
+            <img src="screenshot/s13.jpg" alt="">
+            <img src="screenshot/s15.jpg" alt="">
+            <img src="bright revelation.jpg" alt="">
           </div>
         </div>
     
         <!-- Middle Row -->
         <div class="scroller">
           <div class="scroller-row">
-            <img src="screenshot/s7.jpg" alt="">
-            <img src="screenshot/s7.jpg" alt="">
-            <img src="screenshot/s7.jpg" alt="">
-            <img src="screenshot/s7.jpg" alt="">
-            <img src="screenshot/s7.jpg" alt="">
-            <img src="screenshot/s7.jpg" alt="">
-            <img src="screenshot/s7.jpg" alt="">
-            <img src="screenshot/s7.jpg" alt="">
+            <img src="screenshot/s2.jpg" alt="">
+            <img src="screenshot/s4.jpg" alt="">
+            <img src="screenshot/s6.jpg" alt="">
+            <img src="screenshot/s8.jpg" alt="">
+            <img src="screenshot/s10.jpg" alt="">
+            <img src="screenshot/s12.jpg" alt="">
+            <img src="screenshot/s14.jpg" alt="">
+            <img src="screenshot/s16.jpg" alt="">
+            <img src="main.jpg" alt="">
           </div>
         </div>
     
         <!-- Bottom Row -->
         <div class="scroller">
           <div class="scroller-row reverse">
-            <img src="screenshot/s8.jpg" alt="">
-            <img src="screenshot/s8.jpg" alt="">
-            <img src="screenshot/s8.jpg" alt="">
-            <img src="screenshot/s8.jpg" alt="">
-            <img src="screenshot/s8.jpg" alt="">
-            <img src="screenshot/s8.jpg" alt="">
-            <img src="screenshot/s8.jpg" alt="">
-            <img src="screenshot/s8.jpg" alt="">
+            <img src="screenshot/s17.jpg" alt="">
+            <img src="screenshot/s20.jpg" alt="">
+            <img src="screenshot/s19.jpg" alt="">
+            <img src="screenshot/s21.jpg" alt="">
+            <img src="screenshot/s24.jpg" alt="">
+            <img src="screenshot/s25.jpg" alt="">
+            <img src="screenshot/s26.jpg" alt="">
+            <img src="screenshot/s27.jpg" alt="">
+            <img src="color revelation.jpg" alt="">
           </div>
         </div>
       </div>
@@ -377,8 +401,8 @@
     </div>
   
     <div class="footer-logos">
-      <img src="sega-logo.png" alt="SEGA Logo" class="footer-logo" />
-      <img src="rgg-logo.png" alt="Ryu Ga Gotoku Studio Logo" class="footer-logo" />
+      <img src="logo_sega.png" alt="SEGA Logo" class="footer-logo1" />
+      <img src="logo_ryu.png" alt="Ryu Ga Gotoku Studio Logo" class="footer-logo2" />
     </div>
   
     <div class="footer-socials">

@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Screenshots lightbox logic
-  const screenshots = document.querySelectorAll(".story-gallery img, .screenshots img");
+  const screenshots = document.querySelectorAll(".story-gallery img, .screenshots img",);
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const closeBtn = document.querySelector(".close-lightbox");
@@ -139,3 +139,71 @@ document.addEventListener('DOMContentLoaded', () => {
     hoverpause: true
   }).mount();
 });
+
+// Youtube Video Autoplay on Scroll
+  const video = document.getElementById('trailer-video');
+  const soundToggle = document.getElementById('sound-toggle');
+  let isMuted = false;
+
+  // Attempt to play with sound
+  video.muted = false;
+  video.volume = 1;
+
+  const tryAutoplay = () => {
+    video.play().catch(() => {
+      // Autoplay with sound failed — fallback to muted
+      video.muted = true;
+      video.play();
+      isMuted = true;
+      soundToggle.textContent = '🔇';
+    });
+  };
+
+  // Intersection observer to play/pause on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tryAutoplay();
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(video);
+
+  // Toggle mute/unmute
+  soundToggle.addEventListener('click', () => {
+    if (video.muted || isMuted) {
+      // Fade in volume
+      video.muted = false;
+      video.volume = 0;
+      isMuted = false;
+      let vol = 0;
+      const fadeIn = setInterval(() => {
+        if (vol < 1) {
+          vol += 0.05;
+          video.volume = Math.min(vol, 1);
+        } else {
+          clearInterval(fadeIn);
+        }
+      }, 100);
+      soundToggle.textContent = '🔊';
+    } else {
+      video.muted = true;
+      isMuted = true;
+      soundToggle.textContent = '🔇';
+    }
+  });
+
+  //Image Duplications
+  window.addEventListener("DOMContentLoaded", () => {
+    const scrollerRow = document.getElementById("scrollerRow");
+
+    // Clone all children (images)
+    const images = Array.from(scrollerRow.children);
+    images.forEach((img) => {
+      const clone = img.cloneNode(true);
+      scrollerRow.appendChild(clone);
+    });
+  });

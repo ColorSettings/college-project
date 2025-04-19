@@ -140,61 +140,49 @@ document.addEventListener('DOMContentLoaded', () => {
   }).mount();
 });
 
-// Youtube Video Autoplay on Scroll
-  const video = document.getElementById('trailer-video');
-  const soundToggle = document.getElementById('sound-toggle');
-  let isMuted = false;
+//Trailer Section
+let player;
 
-  // Attempt to play with sound
-  video.muted = false;
-  video.volume = 1;
-
-  const tryAutoplay = () => {
-    video.play().catch(() => {
-      // Autoplay with sound failed — fallback to muted
-      video.muted = true;
-      video.play();
-      isMuted = true;
-      soundToggle.textContent = '🔇';
-    });
-  };
-
-  // Intersection observer to play/pause on scroll
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        tryAutoplay();
-      } else {
-        video.pause();
-      }
-    });
-  }, { threshold: 0.5 });
-
-  observer.observe(video);
-
-  // Toggle mute/unmute
-  soundToggle.addEventListener('click', () => {
-    if (video.muted || isMuted) {
-      // Fade in volume
-      video.muted = false;
-      video.volume = 0;
-      isMuted = false;
-      let vol = 0;
-      const fadeIn = setInterval(() => {
-        if (vol < 1) {
-          vol += 0.05;
-          video.volume = Math.min(vol, 1);
-        } else {
-          clearInterval(fadeIn);
-        }
-      }, 100);
-      soundToggle.textContent = '🔊';
-    } else {
-      video.muted = true;
-      isMuted = true;
-      soundToggle.textContent = '🔇';
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('trailer-video', {
+    events: {
+      'onReady': onPlayerReady
     }
   });
+}
+
+function onPlayerReady(event) {
+  let hasInteracted = false;
+  const videoContainer = document.getElementById('video-container');
+
+  window.addEventListener('scroll', () => {
+    if (!hasInteracted) {
+      hasInteracted = true;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            videoContainer.style.opacity = '1';
+            event.target.unMute();
+            event.target.playVideo();
+          } else {
+            event.target.pauseVideo();
+          }
+        });
+      }, {
+        threshold: 0.6
+      });
+
+      observer.observe(document.getElementById('trailer-video'));
+    }
+  }, { once: true });
+}
+
+// Load YouTube Iframe API
+const tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+
 
   //Image Duplications
   window.addEventListener("DOMContentLoaded", () => {

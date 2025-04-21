@@ -34,46 +34,62 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
   
-  // Character popups (Coming Soon & Playable)
-  const cards = document.querySelectorAll('.character-card');
-  const popupOverlay = document.createElement('div');
-  popupOverlay.className = 'popup-overlay';
-  document.body.appendChild(popupOverlay);
+ // Open Popup Function
+window.openPopup = function(id) {
+  const popup = document.getElementById(id);
+  if (popup) {
+    popup.classList.add('active');
+    popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      const info = card.querySelector('.character-info');
-      const name = card.querySelector('h3')?.innerText || "Coming Soon";
+    // Trigger reflow to enable animation
+    void popup.offsetWidth;
+    popup.querySelector('.popup-content').classList.add('fade-in');
+  }
+};
 
-      popupOverlay.innerHTML = `
-        <div class="popup fade-in">
-          <button class="popup-close">&times;</button>
-          <div class="popup-left"></div>
-          <div class="popup-middle"></div>
-          <div class="popup-right">
-            <h3>${name}</h3>
-            <p>${info ? info.innerHTML : "More information will be revealed soon."}</p>
-          </div>
-        </div>
-      `;
-      popupOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+// Close Popup Function
+window.closePopup = function() {
+  const popups = document.querySelectorAll('.character-popup.active');
+  popups.forEach(popup => {
+    popup.classList.remove('active');
+    document.body.style.overflow = '';
 
-      popupOverlay.querySelector('.popup-close').addEventListener('click', () => {
-        popupOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-        setTimeout(() => popupOverlay.innerHTML = '', 400);
-      });
-    });
+    const content = popup.querySelector('.popup-content');
+    if (content) content.classList.remove('fade-in');
+
+    setTimeout(() => {
+      popup.style.display = 'none';
+    }, 300);
   });
+};
 
-  popupOverlay.addEventListener('click', (e) => {
-    if (e.target === popupOverlay) {
-      popupOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-      setTimeout(() => popupOverlay.innerHTML = '', 400);
-    }
+function openPopup({ bg, stand, name, actor, story }) {
+  document.getElementById('characterPopup').style.display = 'flex';
+  document.getElementById('popupBg').style.backgroundImage = `url('${bg}')`;
+  document.getElementById('popupStand').src = stand;
+  document.getElementById('popupName').textContent = name;
+  document.getElementById('popupActor').textContent = actor;
+  document.getElementById('popupStory').textContent = story;
+}
+
+function closePopup() {
+  document.querySelectorAll('.character-popup').forEach(popup => {
+    popup.style.display = 'none';
   });
+}
+
+window.openPopup = openPopup;
+window.closePopup = closePopup;
+
+document.querySelectorAll('.character-thumbnails img').forEach(img => {
+  img.addEventListener('click', function () {
+    document.querySelectorAll('.character-thumbnails img').forEach(i => i.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+
 
   // Screenshots lightbox logic
   const screenshots = document.querySelectorAll(".story-gallery img, .screenshots img, .battle-images img, .glide__slide img, .city-images img");

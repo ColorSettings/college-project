@@ -453,101 +453,151 @@ section {
   transform: translateY(0);
 }
 
-.popup-content {
-  background: #fff;
-  padding: 2rem;
-  max-width: 500px;
-  width: 90%;
-  border-radius: 10px;
-  animation: fadeInPopup 0.3s ease-in-out;
-}
-
-
-@keyframes fadeInPopup {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.popup-overlay {
-  opacity: 0;
-  visibility: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* === Character Popup Wrapper === */
+.character-popup {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-  z-index: 1000;
-  padding: 1rem;
-}
-
-.popup-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-
-.popup {
-  display: flex;
-  flex-direction: row;
-  background-color: #111;
-  border-radius: 10px;
-  max-width: 700px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  animation: fadeInUp 0.5s ease-out;
-}
-
-
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #f1c40f;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.popup .popup-left {
-  width: 35%;
-  background: url('character-background.jpg') no-repeat center center/cover;
-  min-height: 300px;
-}
-
-.popup .popup-middle {
-  width: 20%;
-  background: url('transparent.png') no-repeat center center;
-  background-size: contain;
-  min-height: 300px;
-}
-
-.popup .popup-right {
-  width: 45%;
-  padding: 1.5rem;
-  color: #fff;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+  overflow-y: auto;
 }
 
-.popup .popup-right h3 {
-  color: #f1c40f;
-  margin-bottom: 1rem;
+/* === Popup Box Container === */
+.popup-box {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  height: 550px;
+  background: #0f0f0f;
+  border-radius: 10px;
+  border: 1px solid #444;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.312);
+  overflow: hidden;
+  position: relative;
 }
+
+/* === Left Background Area (Now takes full space correctly) === */
+.popup-left {
+  flex: 1;
+  background: #000 center center / cover no-repeat;
+  filter: brightness(0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 33%;
+  height: 100%;
+}
+
+/* === Center Character PNG (Overlayed over background) === */
+.popup-middle {
+  position: absolute;
+  left: calc(33.333% - 40px);
+  top: 55%;
+  transform: translateY(-50%);
+  z-index: 5;
+  pointer-events: none;
+  width: 400px;
+  height: auto;
+}
+
+.popup-middle img {
+  max-height: 90%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* === Right Text Content === */
+.popup-right {
+  flex: 1;
+  color: #f9f9f9;
+  padding: 2rem 2.5rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  overflow-y: auto;
+  position: relative;
+  z-index: 5;
+}
+
+.popup-right h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.popup-right p {
+  font-size: 0.9rem;
+  color: #999;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.story-text {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: #ddd;
+  white-space: pre-wrap;
+}
+
+/* === Close Button === */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* === Character Thumbnails Section (Now below popup) === */
+.character-thumbnails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1300px;
+}
+
+/* === Each Thumbnail === */
+.character-thumbnails img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 transparent;
+}
+
+/* === Hover Effect === */
+.character-thumbnails img:hover {
+  border-color: #00ffff58;
+  transform: scale(1.1);
+}
+
+/* === Active Thumbnail (Yellow Glow) === */
+.character-thumbnails img.active {
+  border-color: #00ffffa7;
+  box-shadow: 0 0 8px #00ffffbf;
+}
+
+
+
 
 /*screenshots section*/
 .screenshots {

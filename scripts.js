@@ -52,15 +52,22 @@ window.openPopup = function(id) {
 window.closePopup = function() {
   const popups = document.querySelectorAll('.character-popup.active');
   popups.forEach(popup => {
+    // Remove the 'active' class
     popup.classList.remove('active');
     document.body.style.overflow = '';
 
+    // Add the fade-out animation class
     const content = popup.querySelector('.popup-content');
-    if (content) content.classList.remove('fade-in');
+    if (content) {
+      content.classList.remove('fade-in'); // Remove fade-in if it exists
+      content.classList.add('fade-out'); // Add fade-out animation
+    }
 
+    // Wait for the fade-out animation to complete before hiding the popup
     setTimeout(() => {
       popup.style.display = 'none';
-    }, 300);
+      if (content) content.classList.remove('fade-out'); // Clean up fade-out class
+    }, 500); // Match the duration of the fade-out animation (0.5s)
   });
 };
 
@@ -88,6 +95,7 @@ document.querySelectorAll('.character-thumbnails img').forEach(img => {
     this.classList.add('active');
   });
 });
+
 
 
 

@@ -456,147 +456,181 @@ section {
 /* === Character Popup Wrapper === */
 .character-popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95vw;
+  max-width: 1400px;
+  height: 85vh;
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   z-index: 9999;
-  padding: 2rem;
-  backdrop-filter: blur(6px);
-  overflow-y: auto;
+  padding: 0;
+  box-shadow: 0 0 60px rgba(0, 255, 255, 0.422);
+  border-radius: 10px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-/* === Popup Box Container === */
 .popup-box {
   display: flex;
   width: 100%;
-  max-width: 1300px;
-  height: 550px;
-  background: #0f0f0f;
-  border-radius: 10px;
-  border: 1px solid #444;
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.312);
+  height: 100%;
   overflow: hidden;
+}
+
+.popup-left {
+  flex: 1.2;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 40% center;
+  filter: brightness(0.6);
+  transition: filter 0.3s ease;
   position: relative;
 }
 
-/* === Left Background Area (Now takes full space correctly) === */
-.popup-left {
-  flex: 1;
-  background: #000 center center / cover no-repeat;
-  filter: brightness(0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 33%;
-  height: 100%;
-}
-
-/* === Center Character PNG (Overlayed over background) === */
 .popup-middle {
   position: absolute;
-  left: calc(33.333% - 40px);
-  top: 55%;
-  transform: translateY(-50%);
-  z-index: 5;
+  left: 30%;
+  bottom: 5%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   pointer-events: none;
-  width: 400px;
-  height: auto;
+  z-index: 1;
 }
 
 .popup-middle img {
-  max-height: 90%;
-  max-width: 100%;
+  height: 100%;
   object-fit: contain;
+  max-width: 100%;
+  transform: translateY(40px);
 }
 
-/* === Right Text Content === */
 .popup-right {
   flex: 1;
-  color: #f9f9f9;
-  padding: 2rem 2.5rem;
+  margin-left: 7.5rem;
+  padding: 5rem 2.5rem;
+  color: #fff;
   font-family: 'Noto Sans JP', sans-serif;
   overflow-y: auto;
-  position: relative;
-  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(10, 10, 10, 0.95);
 }
 
 .popup-right h2 {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.4rem;
+  font-weight: bold;
   color: #fff;
-  font-weight: 800;
+  margin-bottom: 0.6rem;
 }
 
-.popup-right p {
-  font-size: 0.9rem;
-  color: #999;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.popup-right h3 {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #aaa;
+  margin-bottom: 1.2rem;
 }
 
-.story-text {
-  font-size: 1.5rem;
-  line-height: 1.6;
-  color: #ddd;
+.popup-right .story-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #ccc;
   white-space: pre-wrap;
 }
 
-/* === Close Button === */
-.close-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 1.8rem;
-  color: #fff;
-  cursor: pointer;
-  z-index: 100;
-}
-
-/* === Character Thumbnails Section (Now below popup) === */
 .character-thumbnails {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 1rem;
-  margin-top: 1.5rem;
+  padding: 1.5rem;
   flex-wrap: wrap;
-  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
   width: 100%;
-  max-width: 1300px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* === Each Thumbnail === */
 .character-thumbnails img {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   border: 2px solid transparent;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 0 transparent;
 }
 
-/* === Hover Effect === */
-.character-thumbnails img:hover {
-  border-color: #00ffff58;
+.character-thumbnails img:hover,
+.character-thumbnails img.active {
+  border-color: #ffe100;
+  box-shadow: 0 0 10px rgba(255, 225, 0, 0.6);
   transform: scale(1.1);
 }
 
-/* === Active Thumbnail (Yellow Glow) === */
-.character-thumbnails img.active {
-  border-color: #00ffffa7;
-  box-shadow: 0 0 8px #00ffffbf;
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+  color: #ffe100;
 }
 
 
+@keyframes slideIn {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Fade-out animation */
+.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+/* Keyframes for fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Keyframes for fade-out */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 
 /*screenshots section*/
@@ -1122,7 +1156,6 @@ line-height: 1.6;
 .city-overlay span {
   font-size: 1.4rem;
 }
-}
 
   .popup {
     flex-direction: column;
@@ -1134,3 +1167,29 @@ line-height: 1.6;
     width: 100%;
     min-height: 200px;
   }
+
+  .popup-middle {
+    position: absolute;
+    left: 12%;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .popup-right {
+    flex: 1;
+    margin-left: 15.5rem;
+    padding: 5rem 2.5rem;
+    color: #fff;
+    font-family: 'Noto Sans JP', sans-serif;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(10, 10, 10, 0.95);
+  }
+}
